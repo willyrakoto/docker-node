@@ -13,9 +13,10 @@ COPY ./s2i/bin/ /usr/libexec/s2i
 # Add script to fix directory permissions 
 COPY bin/fix-permissions /usr/bin/fix-permissions
 
-RUN chown -R 1001:0 /usr/src/app
+RUN chown -R 1001:0 /usr/src/app \
+    && useradd -u 1001 -r -g 0 -d ${HOME} -s /sbin/nologin \
+      -c "Default Application User" default
 
 USER 1001
 
-#CMD [ "npm", "start" ]
 CMD /usr/libexec/s2i/usage
