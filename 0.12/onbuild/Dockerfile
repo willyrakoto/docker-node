@@ -14,10 +14,13 @@ ENV STI_SCRIPTS_URL=image:///usr/libexec/s2i
 # Path to be used in other layers to place s2i scripts into
 ENV STI_SCRIPTS_PATH=/usr/libexec/s2i
 
+ENV HOME=/usr/src/app
+
 LABEL io.k8s.description="Platform for building and running Node.js 0.12 applications" \
       io.k8s.display-name="Node.js 0.12" \
       io.openshift.expose-services="8080:http" \
       io.openshift.tags="builder,nodejs,nodejs012"
+      
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
