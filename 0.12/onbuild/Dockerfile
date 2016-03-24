@@ -10,6 +10,8 @@ ONBUILD COPY . /usr/src/app
 # Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
 COPY ./s2i/bin/ /usr/libexec/s2i
 
+RUN chown -R 1001:0 /usr/src/app
+
 USER 1001
 
 #CMD [ "npm", "start" ]
