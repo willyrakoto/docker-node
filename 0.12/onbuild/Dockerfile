@@ -29,11 +29,17 @@ ONBUILD COPY package.json /usr/src/app/
 ONBUILD RUN npm install
 ONBUILD COPY . /usr/src/app
 
-# Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
-COPY ./s2i/bin/ $STI_SCRIPTS_PATH
+# Copy the S2I scripts to /usr/libexec/s2i since we set the label that way
+COPY  ["s2i/bin/run", "s2i/bin/assemble", "s2i/bin/usage", "/usr/libexec/s2i/"]
+
+
 
 # Add script to fix directory permissions 
 COPY bin/fix-permissions /usr/bin/fix-permissions
+
+# Add rights
+RUN chmod -R a+rwx /usr/libexec/s2i
+RUN chmod -R a+rwx /usr/bin/fix-permissions
 
 RUN chown -R 1001:0 /usr/src/app \
     && useradd -u 1001 -r -g 0 -d ${HOME} -s /sbin/nologin \
@@ -41,4 +47,6 @@ RUN chown -R 1001:0 /usr/src/app \
 
 USER 1001
 
-CMD [ "npm", "start" ]
+WORKDIR /usr/src/app
+
+CMD ["/usr/libexec/s2i/usage"]
