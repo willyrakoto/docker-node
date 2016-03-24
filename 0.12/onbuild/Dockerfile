@@ -8,12 +8,9 @@ ONBUILD RUN npm install
 ONBUILD COPY . /usr/src/app
 
 # Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
-COPY ./s2i/bin/ $STI_SCRIPTS_PATH
-
-# Each language image can have 'contrib' a directory with extra files needed to
-# run and build the applications.
-COPY ./contrib/ /opt/app-root
+COPY ./s2i/bin/ /usr/libexec/s2i
 
 USER 1001
 
-CMD [ "npm", "start" ]
+#CMD [ "npm", "start" ]
+CMD /usr/libexec/s2i/usage
