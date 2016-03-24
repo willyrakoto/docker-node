@@ -1,5 +1,10 @@
 FROM node:0.12.12
 
+LABEL io.k8s.description="Platform for building and running Node.js 0.12 applications" \
+      io.k8s.display-name="Node.js 0.12" \
+      io.openshift.expose-services="8080:http" \
+      io.openshift.tags="builder,nodejs,nodejs012"
+
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
