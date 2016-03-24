@@ -41,4 +41,4 @@ RUN chown -R 1001:0 /usr/src/app \
 
 USER 1001
 
-CMD /usr/libexec/s2i/usage
+CMD [ "npm", "start" ]
