@@ -39,6 +39,11 @@ COPY ./contrib/ /opt/app-root
 RUN chown -R 1001:0 /opt/app-root && chmod -R ug+rwx /opt/app-root \
  && chown -R 1001:0 /usr/libexec && chmod -R ug+rwx /usr/libexec
 
+# Replace bad end line of file Windows / Linux
+RUN  sed -i -e 's/\r$//' $STI_SCRIPTS_PATH/assemble \
+  && sed -i -e 's/\r$//' $STI_SCRIPTS_PATH/run \
+  && sed -i -e 's/\r$//' $STI_SCRIPTS_PATH/usage
+
 # Add execution rights
 RUN chmod -R a+rwx /usr/libexec/s2i
 RUN chmod -R a+rwx /usr/bin/fix-permissions
