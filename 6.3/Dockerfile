@@ -23,10 +23,10 @@ RUN curl -sL -o ns.rpm "https://rpm.nodesource.com/pub_6.x/el/7/x86_64/nodejs-6.
 && rpm -i --nosignature --force ns.rpm \
 && rm -f ns.rpm
 
-RUN npm install -g pangyp\
- && ln -s $(which pangyp) $(dirname $(which pangyp))/node-gyp\
- && npm cache clear\
- && node-gyp configure || echo ""
+#RUN npm install -g pangyp\
+# && ln -s $(which pangyp) $(dirname $(which pangyp))/node-gyp\
+# && npm cache clear\
+# && node-gyp configure || echo ""
 
 # Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
 COPY ./s2i/bin/ $STI_SCRIPTS_PATH
