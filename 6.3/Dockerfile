@@ -19,7 +19,7 @@ LABEL summary="Platform for building and running Node.js $NODE_VERSION applicati
       com.redhat.deployments-dir="/opt/app-root/src" \
       com.redhat.dev-mode.port="DEBUG_PORT:5858"
 
-RUN curl -sL -o ns.rpm "https://rpm.nodesource.com/pub_6.x/el/7/x86_64/nodejs-$NODE_VERSIONnodesource.el7.centos.x86_64.rpm" \
+RUN curl -sL -o ns.rpm "https://rpm.nodesource.com/pub_6.x/el/7/x86_64/nodejs-6.3.0-1nodesource.el7.centos.x86_64.rpm" \
 && rpm -i --nosignature --force ns.rpm \
 && rm -f ns.rpm
 
