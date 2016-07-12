@@ -38,6 +38,11 @@ COPY ./contrib/ /opt/app-root
 # Drop the root user and make the content of /opt/app-root owned by user 1001
 RUN chown -R 1001:0 /opt/app-root && chmod -R ug+rwx /opt/app-root \
  && chown -R 1001:0 /usr/libexec && chmod -R ug+rwx /usr/libexec
+
+# Add execution rights
+RUN chmod -R a+rwx /usr/libexec/s2i
+RUN chmod -R a+rwx /usr/bin/fix-permissions
+
 USER 1001
 
 # Set the default CMD to print the usage of the language image
