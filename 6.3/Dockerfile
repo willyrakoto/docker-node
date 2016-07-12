@@ -4,11 +4,11 @@ EXPOSE 8080
 
 MAINTAINER smartux
 
-ENV NODE_VERSION 6.3.0-1 \
-    NPM_RUN start \                                                             
-    NPM_CONFIG_PREFIX $HOME/.npm-global \
-    NODE_ENV production \   
-    PATH $HOME/node_modules/.bin/:$HOME/.npm-global/bin/:$PATH
+ENV NODE_VERSION 6.3.0-1
+ENV NPM_RUN start                                         
+ENV NPM_CONFIG_PREFIX $HOME/.npm-global
+ENV NODE_ENV production
+ENV PATH $HOME/node_modules/.bin/:$HOME/.npm-global/bin/:$PATH
 
 LABEL summary="Platform for building and running Node.js $NODE_VERSION applications" \
       io.k8s.description="Platform for building and running Node.js $NODE_VERSION applications" \
